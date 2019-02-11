@@ -89,3 +89,22 @@ resource "aws_iam_role" "readonly" {
 
   assume_role_policy = "${var.readonly_role_requires_mfa ?  data.aws_iam_policy_document.assume_role_with_mfa.json : data.aws_iam_policy_document.assume_role.json}"
 }
+
+# CustomRole
+
+resource "aws_iam_role_policy_attachment" "custom" {
+  count = "${var.create_custom_role ? 1 : 0}"
+
+  role = "${aws_iam_role.custom.name}"
+  policy_arn = "${var.custom_role_policy_document}"
+}
+
+resource "aws_iam_role" "custom" {
+  count = "${var.create_custom_role ? 1 : 0}"
+
+  name = "${var.custom_role_name}"
+  path = "${var.custom_role_path}"
+  max_session_duration = "${var.custom_role_max_session_duration}"
+
+  assume_role_policy = "${var.custom_role_requires_mfa ? data.aws_iam_policy_document.assume_role_with_mfa.json : data.aws_iam_policy_document.assume_role.json}"
+}

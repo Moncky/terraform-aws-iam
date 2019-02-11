@@ -90,3 +90,34 @@ variable "max_session_duration" {
   description = "Maximum CLI/API session duration in seconds between 3600 and 43200"
   default     = 3600
 }
+
+# CustomRole
+variable "create_custom_role" {
+  description = "Whether to create custom role"
+  default     = false
+}
+
+variable "custom_role_name" {
+  description = "IAM role with custom access"
+  default     = "readonly"
+}
+
+variable "custom_role_path" {
+  description = "Path of custom IAM role"
+  default     = "/"
+}
+
+variable "custom_role_requires_mfa" {
+  description = "Whether custom role requires MFA"
+  default     = true
+}
+
+variable "custom_role_policy_document" {
+  description = "Policy Document to use for custom role see https://www.terraform.io/docs/providers/aws/d/iam_policy_document.html"
+  default     = ""
+}
+
+variable "custom_role_max_session_duration" {
+  description = "Maximum CLI/API session duration in seconds between 3600 and 43200 for Custom Role"
+  default     = 3600
+}
