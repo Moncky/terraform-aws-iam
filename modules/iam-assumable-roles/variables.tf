@@ -109,7 +109,7 @@ variable "custom_role_path" {
 
 variable "custom_role_requires_mfa" {
   description = "Whether custom role requires MFA"
-  default     = true
+  default     = false
 }
 
 variable "custom_role_policy_document" {
