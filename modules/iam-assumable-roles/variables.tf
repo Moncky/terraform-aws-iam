@@ -121,3 +121,13 @@ variable "custom_role_max_session_duration" {
   description = "Maximum CLI/API session duration in seconds between 3600 and 43200 for Custom Role"
   default     = 3600
 }
+
+variable "custom_policy_name" {
+  description = "IAM policy with custom access"
+  default     = "readonly"
+}
+
+variable "custom_policy_path" {
+  description = "Path of custom IAM policy"
+  default     = "/"
+}

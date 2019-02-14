@@ -92,11 +92,21 @@ resource "aws_iam_role" "readonly" {
 
 # CustomRole
 
+resource "aws_iam_policy" "custom" {
+  name        = "${var.custom_policy_name}"
+  path        = "${var.custom_policy_path}"
+
+  policy = "${var.custom_role_policy_document}"
+
+}
+
+
+
 resource "aws_iam_role_policy_attachment" "custom" {
   count = "${var.create_custom_role ? 1 : 0}"
 
   role = "${aws_iam_role.custom.name}"
-  policy_arn = "${var.custom_role_policy_document}"
+  policy_arn = "${aws_iam_policy.custom.arn}"
 }
 
 resource "aws_iam_role" "custom" {
