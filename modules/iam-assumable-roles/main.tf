@@ -100,8 +100,6 @@ resource "aws_iam_policy" "custom" {
 
 }
 
-
-
 resource "aws_iam_role_policy_attachment" "custom" {
   count = "${var.create_custom_role ? 1 : 0}"
 
